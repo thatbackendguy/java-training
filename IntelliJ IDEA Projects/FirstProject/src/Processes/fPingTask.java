@@ -43,7 +43,7 @@ public class fPingTask
 
         ProcessBuilder processBuilder = new ProcessBuilder();
 
-        processBuilder.command("fping", "-c", packetCount, "-f", HOST_FILE_PATH);
+        processBuilder.command("fping", "-c", packetCount, "-f", HOST_FILE_PATH).redirectErrorStream(true);
 
         Process process = processBuilder.start();
 
