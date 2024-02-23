@@ -1,0 +1,265 @@
+{
+  "audit.module": {
+    "mapper.plugin.ids": [
+      500002
+    ],
+    "mapper.event.category": "audit",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "audit.remote.ip": {
+    "mapper.plugin.ids": [
+      500002
+    ],
+    "mapper.event.category": "audit",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "audit.operation": {
+    "mapper.plugin.ids": [
+      500002
+    ],
+    "mapper.event.category": "audit",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "audit.user": {
+    "mapper.plugin.ids": [
+      500002
+    ],
+    "mapper.event.category": "audit",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "audit.message": {
+    "mapper.plugin.ids": [
+      500002
+    ],
+    "mapper.event.category": "audit",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "audit.status": {
+    "mapper.plugin.ids": [
+      500002
+    ],
+    "mapper.event.category": "audit",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "event.category": {
+    "mapper.plugin.ids": [
+      499999
+    ],
+    "mapper.event.category": "Other",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "event.received.time": {
+    "mapper.plugin.ids": [
+      500009
+    ],
+    "mapper.event.category": "Other",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "message": {
+    "mapper.plugin.ids": [
+      499999
+    ],
+    "mapper.event.category": "Other",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "event.source.type": {
+    "mapper.plugin.ids": [
+      499999
+    ],
+    "mapper.event.category": "Other",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "event": {
+    "mapper.plugin.ids": [
+      500009
+    ],
+    "mapper.event.category": "Other",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "event.pattern.id": {
+    "mapper.plugin.ids": [
+      500009
+    ],
+    "mapper.event.category": "Other",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "event.severity": {
+    "mapper.plugin.ids": [
+      499999
+    ],
+    "mapper.event.category": "Other",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "log.volume.bytes": {
+    "mapper.plugin.ids": [
+      500011
+    ],
+    "mapper.event.category": "log.stat",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "logs.per.sec": {
+    "mapper.plugin.ids": [
+      500011
+    ],
+    "mapper.event.category": "log.stat",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "log.volume.bytes.per.sec": {
+    "mapper.plugin.ids": [
+      500011
+    ],
+    "mapper.event.category": "log.stat",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "user.notification.type": {
+    "mapper.plugin.ids": [
+      500008
+    ],
+    "mapper.event.category": "notification",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "user.notification.severity": {
+    "mapper.plugin.ids": [
+      500008
+    ],
+    "mapper.event.category": "notification",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "user.notification.message": {
+    "mapper.plugin.ids": [
+      500008
+    ],
+    "mapper.event.category": "notification",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "user.notification.id": {
+    "mapper.plugin.ids": [
+      500008
+    ],
+    "mapper.event.category": "notification",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "severity": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "policy.type": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "object.id": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "object.category": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "policy.id": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      1
+    ]
+  },
+  "metric": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "value": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      1,
+      0
+    ]
+  },
+  "instance": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      0
+    ]
+  },
+  "policy.threshold": {
+    "mapper.plugin.ids": [
+      500003
+    ],
+    "mapper.event.category": "policy",
+    "mapper.data.categories": [
+      0,
+      1
+    ]
+  }
+}
