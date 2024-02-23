@@ -1,2 +1,2 @@
-# java-training
+# Java Training
 Java Practise Codes
