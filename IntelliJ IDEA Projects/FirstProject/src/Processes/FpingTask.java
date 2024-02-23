@@ -3,7 +3,7 @@ package Processes;
 import java.io.*;
 import java.util.*;
 
-public class fPingTask
+public class FpingTask
 {
 
     public static void main(String[] args) throws IOException
