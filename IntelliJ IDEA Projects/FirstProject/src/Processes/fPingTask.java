@@ -62,9 +62,7 @@ public class fPingTask
                 {
                     var value = ipAndPacketCount.get(host);
 
-                    value++;
-
-                    ipAndPacketCount.put(host, value);
+                    ipAndPacketCount.put(host, ++value);
                 }
 
             }
