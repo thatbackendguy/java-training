@@ -15,8 +15,7 @@ class Laptop implements Computer
 
     public void getData()
     {
-        System.out.println(age);
-        System.out.println(cmpName);
+        System.out.println(age+" "+cmpName);
     }
 }
 class Desktop implements Computer
@@ -27,8 +26,7 @@ class Desktop implements Computer
     }
     public void getData()
     {
-        System.out.println(age);
-        System.out.println(cmpName);
+        System.out.println(age+" "+cmpName);
     }
 }
 
@@ -40,8 +38,7 @@ class Developer
     }
     public void getData(int age, String cmpName)
     {
-        System.out.println(age);
-        System.out.println(cmpName);
+        System.out.println(age+" "+cmpName);
     }
 }
 
@@ -51,10 +48,13 @@ public class interfaceCode {
         Laptop x1carbon = new Laptop();
         Desktop desktop = new Desktop();
         Developer yash = new Developer();
-        
+
+        x1carbon.getData();
+
+        desktop.getData();
+
+        yash.getData(22, "google");
         yash.work(x1carbon);
         yash.work(desktop);
-
-        yash.getData();
-    }    
+    }
 }

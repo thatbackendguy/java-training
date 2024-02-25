@@ -1,4 +1,4 @@
-//package lambdaExpression;
+package lambdaExpression;
 
 @FunctionalInterface
 interface InnerlambdaDemo3

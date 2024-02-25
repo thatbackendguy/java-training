@@ -6,6 +6,6 @@ public class ShutdownHook
     {
         Thread printingHook = new Thread(() -> System.out.println("In the middle of a shutdown"));
         Runtime.getRuntime().addShutdownHook(printingHook);
-        System.exit(129);
+        System.exit(0);
     }
 }

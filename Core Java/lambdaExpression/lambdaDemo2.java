@@ -1,4 +1,4 @@
-//package lambdaExpression;
+package lambdaExpression;
 
 // if a interface has only one method, it is called functional interface
 @FunctionalInterface
@@ -13,6 +13,6 @@ public class lambdaDemo2
         MyLamda obj = (a,b) -> a+b;
 
         System.out.println(obj.add(1,2));
-        
+
     }
 }
