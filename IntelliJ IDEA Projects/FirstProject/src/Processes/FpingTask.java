@@ -23,7 +23,7 @@ public class FpingTask
 
             var userInputHosts = sc.next();
 
-            userInputHosts = userInputHosts.replaceAll(",", "\n");
+            userInputHosts = userInputHosts.replaceAll("\\p{Blank}", "").replaceAll(",", "\n");
 
             fos.write(userInputHosts.getBytes());
 
