@@ -13,7 +13,7 @@ public class MultiThreadedServer
     {
         try
         {
-            ServerSocket serverSocket = new ServerSocket(3001);
+            ServerSocket serverSocket = new ServerSocket(12345);
 
             boolean stop = false;
 
@@ -23,12 +23,11 @@ public class MultiThreadedServer
 
                 Socket clientSocket = serverSocket.accept();
 
-                System.out.println("Client is connected!" + Thread.currentThread().getName());
+                System.out.println("Client is connected!");
 
                 ClientThread clientThread = new ClientThread(clientSocket);
 
                 clientThread.start();
-
             }
             serverSocket.close();
 

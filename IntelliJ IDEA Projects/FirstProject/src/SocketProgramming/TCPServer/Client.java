@@ -18,7 +18,7 @@ public class Client
 
             System.out.println("Server IP Address: " + serverAddress.getHostAddress());
 
-            Socket socket = new Socket("localhost", 3001);
+            Socket socket = new Socket("localhost", 12345);
 
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 

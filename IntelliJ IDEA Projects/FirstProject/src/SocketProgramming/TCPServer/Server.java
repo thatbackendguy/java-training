@@ -13,7 +13,7 @@ public class Server
     {
         try
         {
-            ServerSocket serverSocket = new ServerSocket(3000);
+            ServerSocket serverSocket = new ServerSocket(12345);
 
             System.out.println("Waiting for clients...");
 
@@ -24,7 +24,7 @@ public class Server
             out.println("Hello Client!");
 
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
+            
             String clientInput = input.readLine();
 
             System.out.println(clientInput);
