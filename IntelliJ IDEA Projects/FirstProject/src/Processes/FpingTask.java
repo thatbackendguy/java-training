@@ -41,47 +41,61 @@ public class FpingTask
 
         var packetCount = sc.next();
 
+        System.out.print("Enter time (secs) for polling: ");
+
+        var timeForPolling = sc.nextInt();
+
         ProcessBuilder processBuilder = new ProcessBuilder();
 
         processBuilder.command("fping", "-c", packetCount, "-f", HOST_FILE_PATH).redirectErrorStream(true);
-
-        Process process = processBuilder.start();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-        String line;
-
-        while((line = reader.readLine()) != null)
+        while(true)
         {
-            System.out.println(line);
-            for(String host : hosts)
-            {
-                ipAndPacketCount.putIfAbsent(host, 0);
+            Process process = processBuilder.start();
 
-                if(line.contains(host) && line.contains(" 0% loss"))
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            String line;
+
+            while((line = reader.readLine()) != null)
+            {
+                System.out.println(line);
+                for(String host : hosts)
                 {
-                    var value = ipAndPacketCount.get(host);
+                    ipAndPacketCount.putIfAbsent(host, 0);
 
-                    ipAndPacketCount.put(host, ++value);
+                    if(line.contains(host) && line.contains(" 0% loss"))
+                    {
+                        var value = ipAndPacketCount.get(host);
+
+                        ipAndPacketCount.put(host, ++value);
+                    }
+
                 }
-
             }
-        }
-
-        for(Map.Entry<String, Integer> data : ipAndPacketCount.entrySet())
-        {
-            if(Integer.parseInt(packetCount) != data.getValue())
+            for(Map.Entry<String, Integer> data : ipAndPacketCount.entrySet())
             {
-                System.out.println(data.getKey() + " is DOWN");
+                if(Integer.parseInt(packetCount) != data.getValue())
+                {
+                    System.out.println(data.getKey() + " is DOWN");
+                }
+                else
+                    System.out.println(data.getKey() + " is UP");
             }
-            else
-                System.out.println(data.getKey() + " is UP");
+
+            System.out.println(ipAndPacketCount);
+            System.out.println("-----------------------------------\n");
+            sc.close();
+            process.destroy();
+            try
+            {
+                Thread.sleep(timeForPolling * 1000);
+            } catch(InterruptedException e)
+            {
+                throw new RuntimeException(e);
+            }
+            ipAndPacketCount.clear();
         }
 
-        System.out.println(ipAndPacketCount);
 
-        sc.close();
-
-        process.destroy();
     }
 }

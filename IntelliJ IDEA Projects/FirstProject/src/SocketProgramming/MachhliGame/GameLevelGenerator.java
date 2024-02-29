@@ -1,7 +1,7 @@
-package ExtraTasks;
+package SocketProgramming.MachhliGame;
 
 
-public class Example
+public class GameLevelGenerator
 {
     public static void main(String[] args)
     {
@@ -14,7 +14,7 @@ public class Example
             {
                 for(int j = 0; j < counter; j++)
                 {
-                    System.out.print(counter + gameTerms[i] + '"' + "," + '"');
+                    System.out.print(gameTerms[i] + '"' + "," + '"');
                 }
             }
             counter++;
