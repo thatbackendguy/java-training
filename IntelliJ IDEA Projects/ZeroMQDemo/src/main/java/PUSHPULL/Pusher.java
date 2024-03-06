@@ -11,11 +11,11 @@ public class Pusher {
             // Connect to the puller (optional)
 //            pusher.connect("tcp://localhost:5558"); // Uncomment if puller runs on different machine
             // Bind the socket to a port (useful if puller connects)
-            pusher.bind("tcp://*:5558");
+            pusher.bind("tcp://*:3000");
 
             while (!Thread.currentThread().isInterrupted()) {
                 // Send messages
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 1000000; i++) {
                     String message = "Message " + (i + 1);
                     pusher.send(message.getBytes(ZMQ.CHARSET), 0);
                     System.out.println("Sent message: " + message);

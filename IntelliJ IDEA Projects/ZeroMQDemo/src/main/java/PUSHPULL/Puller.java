@@ -9,9 +9,9 @@ public class Puller {
             // Create a PULL socket
             ZMQ.Socket puller = context.createSocket(SocketType.PULL);
             // Connect to the pusher (optional)
-             puller.connect("tcp://10.20.40.239:5558"); // Uncomment if pusher runs on different machine
+             puller.connect("tcp://localhost:3000"); // Uncomment if pusher runs on different machine
             // Bind the socket to a port (useful if puller runs on different machine)
-             puller.bind("tcp://*:5558");  // Uncomment if pusher binds
+//             puller.bind("tcp://*:3000");  // Uncomment if pusher binds
 
             while (!Thread.currentThread().isInterrupted()) {
                 // Receive messages
