@@ -1,4 +1,4 @@
-package chapter2.deploy;
+package chapter2verticles.deploy;
 
 import io.vertx.core.AbstractVerticle;
 import org.slf4j.Logger;

@@ -4,6 +4,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Launcher;
 import io.vertx.core.ThreadingModel;
+import io.vertx.core.json.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,10 +29,10 @@ public class MainVerticle extends AbstractVerticle
     {
         LOGGER.info("[Main] Running in {}", Thread.currentThread().getName());
 
-        vertx.deployVerticle("io.vertx.example.core.verticle.worker.WorkerVerticle", new DeploymentOptions().setThreadingModel(ThreadingModel.WORKER));
+        vertx.deployVerticle("io.vertx.example.core.verticle.worker.WorkerVerticle", new DeploymentOptions().setThreadingModel(ThreadingModel.WORKER).setConfig(new JsonObject().put("ip","10.20.40.227")));
 
         vertx.eventBus().request("sample.data", "hello vert.x", r -> {
-            System.out.println("[Main] Receiving reply ' " + r.result().body() + "' in " + Thread.currentThread().getName());
+            System.out.println("[Main] Receiving reply '" + r.result().body() + "' in " + Thread.currentThread().getName());
         });
     }
 }

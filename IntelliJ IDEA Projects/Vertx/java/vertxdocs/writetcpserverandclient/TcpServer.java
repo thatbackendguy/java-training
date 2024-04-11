@@ -1,4 +1,4 @@
-package docs.writetcpserverandclient;
+package vertxdocs.writetcpserverandclient;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.net.NetServer;
