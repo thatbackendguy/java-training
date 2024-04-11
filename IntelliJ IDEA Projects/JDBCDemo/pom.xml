@@ -21,5 +21,20 @@
         <version>8.0.33</version>
     </dependency>
 
+    <!--Clickhouse-->
+    <dependency>
+        <groupId>com.clickhouse</groupId>
+        <artifactId>clickhouse-jdbc</artifactId>
+        <version>0.6.0</version>
+        <!-- use uber jar with all dependencies included, change classifier to http for smaller jar -->
+        <classifier>all</classifier>
+    </dependency>
+
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>2.0.9</version>
+    </dependency>
+
 </dependencies>
 </project>
