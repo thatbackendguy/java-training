@@ -1,4 +1,4 @@
-package vertxdocs.writehttpserverandclient;
+package core.vertxdocs.writehttpserverandclient;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
