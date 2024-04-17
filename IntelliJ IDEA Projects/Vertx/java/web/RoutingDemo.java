@@ -9,6 +9,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Route;
 import io.vertx.ext.web.Router;
 import core.vertxdocs.jsonparser.User;
+import io.vertx.ext.web.handler.ErrorHandler;
 import io.vertx.ext.web.handler.ResponseContentTypeHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.ext.web.handler.TimeoutHandler;
@@ -17,9 +18,13 @@ import org.slf4j.LoggerFactory;
 
 public class RoutingDemo extends AbstractVerticle
 {
-    private Logger logger = LoggerFactory.getLogger(RoutingDemo.class);
+    private Logger LOGGER = LoggerFactory.getLogger(RoutingDemo.class);
 
-    private String reqContainer = "{} {} {}";
+    private String REQ_CONTAINER = "{} {} {}";
+
+    private ErrorHandler errorHandler() {
+        return ErrorHandler.create(vertx);
+    }
 
     public static void main(String[] args)
     {
@@ -46,15 +51,15 @@ public class RoutingDemo extends AbstractVerticle
         // binding sub-router to Main router
         mainRouter.route("/search/*").subRouter(searchEngineRouter);
 
-        // http://localhost:8080/timeout
+        // http://localhost:8080/search/timeout
         searchEngineRouter.route(HttpMethod.GET, "/timeout").blockingHandler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
             try
             {
                 Thread.sleep(10000);
             } catch(InterruptedException e)
             {
-                logger.error("Interrupted!", e);
+                LOGGER.error("Interrupted!", e);
                 Thread.currentThread().interrupt();
             }
             ctx.redirect("/");
@@ -62,7 +67,7 @@ public class RoutingDemo extends AbstractVerticle
 
         // http://localhost:8080/
         mainRouter.route(HttpMethod.GET, "/").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             ctx.response().addCookie(Cookie.cookie("isVisited", "true")).end("Hello World");
         });
@@ -74,7 +79,7 @@ public class RoutingDemo extends AbstractVerticle
         mainRouter.route("/get/pojo").handler(ctx -> {
             HttpServerResponse response = ctx.response();
 
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             User user = new User("yash", "prajapati", 22, "yash@gmail.com");
 
@@ -86,14 +91,14 @@ public class RoutingDemo extends AbstractVerticle
 
         // http://localhost:8080/get/sample-video
         mainRouter.route(HttpMethod.GET, "/get/sample-video").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             ctx.response().setChunked(true).sendFile("/home/yash/video.mp4");
         });
 
         // http://localhost:8080/get/ftp-server
         mainRouter.route(HttpMethod.GET, "/get/ftp-server").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             ctx.response().setChunked(true).sendFile("/home/yash/ftp-server.txt");
         });
@@ -102,7 +107,7 @@ public class RoutingDemo extends AbstractVerticle
         mainRouter.route(HttpMethod.POST, "/form-data").handler(ctx -> {
             HttpServerRequest req = ctx.request();
 
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             req.setExpectMultipart(true);
 
@@ -128,7 +133,7 @@ public class RoutingDemo extends AbstractVerticle
         // capturing path parameters
         // http://localhost:8080/user/John Doe/1234567890/10-20
         mainRouter.route(HttpMethod.GET, "/user/:name/:phone/:from-:to").produces("application/json").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             var name = ctx.pathParam("name");
 
@@ -144,7 +149,7 @@ public class RoutingDemo extends AbstractVerticle
         // routing order
         // http://localhost:8080/routing-order
         mainRouter.route(HttpMethod.GET, "/routing-order").order(0).handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             HttpServerResponse response = ctx.response();
 
@@ -157,7 +162,7 @@ public class RoutingDemo extends AbstractVerticle
 
         // http://localhost:8080/routing-order
         mainRouter.route(HttpMethod.GET, "/routing-order").order(2).handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             HttpServerResponse response = ctx.response();
 
@@ -168,7 +173,7 @@ public class RoutingDemo extends AbstractVerticle
 
         // http://localhost:8080/routing-order
         mainRouter.route(HttpMethod.GET, "/routing-order").order(1).handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             HttpServerResponse response = ctx.response();
 
@@ -179,7 +184,7 @@ public class RoutingDemo extends AbstractVerticle
 
         // http://localhost:8080/routing-order
         mainRouter.route(HttpMethod.GET, "/routing-order").order(3).handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             HttpServerResponse response = ctx.response();
 
@@ -220,7 +225,7 @@ public class RoutingDemo extends AbstractVerticle
         // YouTube search redirect
         // http://localhost:8080/search/yt/YashPrajapati
         searchEngineRouter.route(HttpMethod.GET, "/yt/:query").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             var query = ctx.pathParam("query");
 
@@ -230,7 +235,7 @@ public class RoutingDemo extends AbstractVerticle
         // Google search redirect
         // http://localhost:8080/search/google/thatbackendguy
         searchEngineRouter.route(HttpMethod.GET, "/google/:query").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             var query = ctx.pathParam("query");
 
@@ -240,7 +245,7 @@ public class RoutingDemo extends AbstractVerticle
         // re-routing
         // http://localhost:8080/api/path
         mainRouter.get("/api/path").handler(ctx -> {
-            logger.info(reqContainer + " 1", ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER + " 1", ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             ctx.put("name", "yash");
 
@@ -249,19 +254,19 @@ public class RoutingDemo extends AbstractVerticle
         });
 
         mainRouter.get("/api/path/B").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             ctx.response().end();
         });
 
         mainRouter.get("/api/path").handler(ctx -> {
-            logger.info(reqContainer + " 2", ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER + " 2", ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
             ctx.reroute("/api/path/B");
         });
 
         // http://localhost:8080/gen-error
         mainRouter.get("/gen-error").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             throw new RuntimeException("something happened!");
         });
@@ -269,11 +274,12 @@ public class RoutingDemo extends AbstractVerticle
         // error handling
         Route route = mainRouter.get("/gen-error");
 
-        route.failureHandler(ctx -> ctx.json(new JsonObject().put("status", "error")));
+        route.failureHandler(errorHandler());
+
 
         // echo json object
         mainRouter.route(HttpMethod.POST, "/echo-json").handler(ctx -> {
-            logger.info(reqContainer, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
+            LOGGER.info(REQ_CONTAINER, ctx.request().method(), ctx.request().path(), ctx.request().remoteAddress());
 
             ctx.request().bodyHandler(buffer -> {
                 ctx.json(buffer.toJsonObject());
